@@ -6,8 +6,8 @@ on:
 
 env:
   AWS_REGION: ap-south-1
-  S3_BUCKET: your-bucket-name-here
-  CLOUDFRONT_DISTRIBUTION_ID: your-distribution-id-here
+  S3_BUCKET: devops-assignment-preetsinghwal
+  CLOUDFRONT_DISTRIBUTION_ID: ""
 
 jobs:
   test:
@@ -62,6 +62,7 @@ jobs:
         run: aws s3 sync dist/ s3://${{ env.S3_BUCKET }} --delete
 
       - name: Invalidate CloudFront cache
+        if: env.CLOUDFRONT_DISTRIBUTION_ID != ''
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ env.CLOUDFRONT_DISTRIBUTION_ID }} \
