@@ -1,1 +1,1 @@
-document.getElementById("version").textContent = "1.0";
+document.getElementById("version").textContent = "2.0";
